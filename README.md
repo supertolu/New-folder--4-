@@ -1,56 +1,108 @@
-# Weather Forecast Web App
+# Structure Project
 
-A simple front-end weather dashboard that lets users search for a city, view the current weather, and browse a multi-day forecast.
+A simple Node.js + Express API for managing users and pets stored in MongoDB.
 
-## Project Overview
+## Overview
 
-This project is a static web application built with:
-- HTML
-- JavaScript
-- jQuery
-- WeatherAPI
-- Owl Carousel for the forecast slider
+This project exposes a small REST API with endpoints for:
 
-It includes:
-- City-based weather lookup
-- Current weather details
-- Multi-day forecast cards
-- Weather highlight carousel
-- Temperature conversion between Celsius and Fahrenheit
+- retrieving users
+- creating a sample user
+- retrieving pets
+- creating a sample pet
 
-## Files in this project
+The server is built with Express and uses MongoDB for persistence.
 
-- `02.htm` — main HTML page for the weather app
-- `myjs2.js` — JavaScript logic for fetching and rendering weather data
-- `02_files/` — page assets and scripts used by the HTML page
-- `htmlassigment.zip` — archived assignment content
+## Tech Stack
 
-## Features
+- Node.js
+- Express
+- MongoDB Node.js Driver
 
-- Search weather by city name
-- Select the number of forecast days
-- Display temperature, humidity, wind, pressure, visibility, UV index, and more
-- Show sunrise and sunset details for each forecast day
-- Update the dashboard dynamically without reloading the page
-- Convert Celsius values to Fahrenheit
+## Project Files
 
-## How to run
+- `app (1).js` — Express application and route definitions
+- `db.js` — MongoDB connection setup
+- `package (1).json` — project dependencies and scripts
 
-1. Open `02.htm` in a web browser.
-2. Enter a city name.
-3. Choose the number of forecast days.
-4. Click the weather button to fetch and display the forecast.
+## Prerequisites
 
-## API setup
+Before running the project, make sure you have:
 
-The app uses the WeatherAPI service. The script contains an API key in `myjs2.js` and calls the WeatherAPI forecast endpoint.
+- Node.js installed
+- MongoDB running locally or a MongoDB Atlas connection string available
+- npm installed
 
-If the key is invalid, expired, or limited, replace it with a valid API key from WeatherAPI to continue using the app.
+## Installation
+
+1. Open a terminal in the project folder.
+2. Install dependencies:
+
+```bash
+npm install
+```
+
+## Configuration
+
+The MongoDB connection string is currently defined in `db.js`.
+
+Before starting the application, update the connection details in that file to match your database setup.
+
+Example:
+
+```js
+const client = new MongoClient(process.env.MONGODB_URI);
+```
+
+and set the environment variable in your shell:
+
+```bash
+set MONGODB_URI=mongodb://localhost:27017/profile
+```
+
+On macOS/Linux:
+
+```bash
+export MONGODB_URI=mongodb://localhost:27017/profile
+```
+
+## Running the App
+
+Start the server with:
+
+```bash
+node "app (1).js"
+```
+
+The API will run on:
+
+```text
+http://localhost:3000
+```
+
+## API Endpoints
+
+### GET /api/users
+Returns all users from the `users` collection.
+
+### POST /api/users
+Creates a sample user record in the `users` collection.
+
+### GET /api/pets
+Returns all pets from the `pets` collection.
+
+### POST /api/pets
+Creates a sample pet record in the `pets` collection.
+
+### 404
+Returns a 404 response for unknown routes.
 
 ## Notes
 
-This is a browser-based project and does not require a backend or database setup. It works best when opened in a modern browser with internet access.
+- The project currently uses hardcoded sample data in the POST routes.
+- The MongoDB connection should be secured before production use.
+- This project is a basic starter backend and can be extended with validation, CRUD routes, and environment-based configuration.
 
 ## License
 
-This project is provided as a learning/demo assignment and does not include a formal license file.
+This project uses the ISC license as defined in `package (1).json`.
